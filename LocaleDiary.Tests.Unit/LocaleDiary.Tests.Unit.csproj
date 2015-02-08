@@ -55,8 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\TestDbAsyncEnumerable.cs" />
+    <Compile Include="Infrastructure\TestDbAsyncEnumerator.cs" />
+    <Compile Include="Infrastructure\TestDbAsyncQueryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LocalesAreRetrieved.cs" />
+    <Compile Include="Services\LocalesAreRetrievedAsync.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -80,6 +84,7 @@
       <Name>LocaleDiary.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

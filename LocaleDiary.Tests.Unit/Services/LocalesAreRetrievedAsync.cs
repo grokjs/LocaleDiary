@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Threading.Tasks;
 using LocaleDiary.Core.Entities;
 using LocaleDiary.Data.Ef;
 using LocaleDiary.Data.Ef.Repositories;
 using LocaleDiary.Data.Repositories;
 using LocaleDiary.Services;
+using LocaleDiary.Tests.Unit.Infrastructure;
 using Moq;
 using NUnit.Framework;
 using TestStack.BDDfy;
@@ -17,7 +20,7 @@ namespace LocaleDiary.Tests.Unit.Services
         AsA = "As a user",
         IWant = "I want to retrieve my locales",
         SoThat = "So that I can view my data")]
-    public class LocalesAreRetrieved
+    public class LocalesAreRetrievedAsync
     {
         #region Private Properties
         private int _userId, _localeId;
@@ -25,6 +28,7 @@ namespace LocaleDiary.Tests.Unit.Services
 
         private readonly Mock<DbSet<Locale>> _mockSet
             = new Mock<DbSet<Locale>>();
+
         private readonly Mock<LocaleDiaryContext> _mockContext
             = new Mock<LocaleDiaryContext>();
 
@@ -71,20 +75,20 @@ namespace LocaleDiary.Tests.Unit.Services
         #endregion
 
         #region When
-        public void WhenTheLocalesAreRetrieved()
+        public async Task WhenTheLocalesAreRetrieved()
         {
             SetUpMock();
             _localeRepository = new LocaleRepository(_mockContext.Object);
             _localeService = new LocaleService(_localeRepository);
-            _userLocales = _localeService.GetLocalesForUser(_userId);
+            _userLocales = await _localeService.GetLocalesForUserAsync(_userId);
         }
 
-        public void WhenTheLocaleIsRetrieved()
+        public async Task WhenTheLocaleIsRetrieved()
         {
             SetUpMock();
             _localeRepository = new LocaleRepository(_mockContext.Object);
             _localeService = new LocaleService(_localeRepository);
-            _locale = _localeService.GetLocaleById(_localeId);
+            _locale = await _localeService.GetLocaleByIdAsync(_localeId);
         }
         #endregion
 
@@ -119,7 +123,7 @@ namespace LocaleDiary.Tests.Unit.Services
                 .And(x => x.AndGivenThatTheUserHasNoLocales())
                 .When(x => x.WhenTheLocalesAreRetrieved())
                 .Then(x => x.ThenNoLocalesAreReturned())
-                .BDDfy<LocalesAreRetrieved>();
+                .BDDfy<LocalesAreRetrievedAsync>();
         }
 
         [Test]
@@ -166,8 +170,12 @@ namespace LocaleDiary.Tests.Unit.Services
 
         private void SetUpMock()
         {
+            _mockSet.As<IDbAsyncEnumerable<Locale>>()
+                .Setup(x => x.GetAsyncEnumerator())
+                .Returns(new TestDbAsyncEnumerator<Locale>(_locales.GetEnumerator()));
             _mockSet.As<IQueryable<Locale>>()
-                .Setup(x => x.Provider).Returns(_locales.Provider);
+                .Setup(x => x.Provider)
+                .Returns(new TestDbAsyncQueryProvider<Locale>(_locales.Provider));
             _mockSet.As<IQueryable<Locale>>()
                 .Setup(x => x.Expression).Returns(_locales.Expression);
             _mockSet.As<IQueryable<Locale>>()
