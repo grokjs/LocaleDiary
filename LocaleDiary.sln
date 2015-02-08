@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1743ACEE-D51D-4EAB-A4FC-4CDEFAE53D73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Tests.Unit", "LocaleDiary.Tests.Unit\LocaleDiary.Tests.Unit.csproj", "{ED08AFF5-380F-4B72-8B60-BB2637DE54BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Core", "LocaleDiary.Core\LocaleDiary.Core.csproj", "{4CD3B4E1-83C3-425C-B0B5-480EFEF86B42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A60DA973-6652-4233-A0FC-EB431A31139B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{4A35A8A5-6A76-4098-8179-E35B14EE3C64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Data", "LocaleDiary.Data\LocaleDiary.Data.csproj", "{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Data.Ef", "LocaleDiary.Data.Ef\LocaleDiary.Data.Ef.csproj", "{59573925-E9C0-423A-909F-3922F9994E6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EA643BA4-8D35-48D2-B3C6-2FADE1904A72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Services", "LocaleDiary.Services\LocaleDiary.Services.csproj", "{291AAE7A-2BCC-439D-B75F-BDD3AF118344}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED08AFF5-380F-4B72-8B60-BB2637DE54BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED08AFF5-380F-4B72-8B60-BB2637DE54BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED08AFF5-380F-4B72-8B60-BB2637DE54BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED08AFF5-380F-4B72-8B60-BB2637DE54BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD3B4E1-83C3-425C-B0B5-480EFEF86B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD3B4E1-83C3-425C-B0B5-480EFEF86B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD3B4E1-83C3-425C-B0B5-480EFEF86B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD3B4E1-83C3-425C-B0B5-480EFEF86B42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59573925-E9C0-423A-909F-3922F9994E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59573925-E9C0-423A-909F-3922F9994E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59573925-E9C0-423A-909F-3922F9994E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59573925-E9C0-423A-909F-3922F9994E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{291AAE7A-2BCC-439D-B75F-BDD3AF118344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291AAE7A-2BCC-439D-B75F-BDD3AF118344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291AAE7A-2BCC-439D-B75F-BDD3AF118344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291AAE7A-2BCC-439D-B75F-BDD3AF118344}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ED08AFF5-380F-4B72-8B60-BB2637DE54BB} = {1743ACEE-D51D-4EAB-A4FC-4CDEFAE53D73}
+		{4CD3B4E1-83C3-425C-B0B5-480EFEF86B42} = {A60DA973-6652-4233-A0FC-EB431A31139B}
+		{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664} = {4A35A8A5-6A76-4098-8179-E35B14EE3C64}
+		{59573925-E9C0-423A-909F-3922F9994E6D} = {4A35A8A5-6A76-4098-8179-E35B14EE3C64}
+		{291AAE7A-2BCC-439D-B75F-BDD3AF118344} = {EA643BA4-8D35-48D2-B3C6-2FADE1904A72}
+	EndGlobalSection
+EndGlobal
