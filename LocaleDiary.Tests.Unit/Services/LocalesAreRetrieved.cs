@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using LocaleDiary.Core.Entities;
@@ -19,7 +20,8 @@ namespace LocaleDiary.Tests.Unit.Services
         SoThat = "So that I can view my data")]
     public class LocalesAreRetrieved
     {
-        private int _userId;
+        #region Private Properties
+        private int _userId, _localeId;
         private IQueryable<Locale> _locales;
 
         private readonly Mock<DbSet<Locale>> _mockSet
@@ -30,17 +32,40 @@ namespace LocaleDiary.Tests.Unit.Services
         private ILocaleRepository _localeRepository;
         private LocaleService _localeService;
         private List<Locale> _userLocales;
+        private Locale _locale;
+        #endregion
 
+        #region Given
         public void GivenAUserId(int userId)
         {
             _userId = userId;
         }
 
+        public void GivenALocaleId(int localeId)
+        {
+            _localeId = localeId;
+        }
+
         public void AndGivenThatTheUserHasNoLocales()
         {
             _locales = TestLocaleData();
+            Assert.That(_locales.Any(x => x.UserId == _userId), Is.False);
         }
 
+        public void AndGivenThatTheUserHasLocales()
+        {
+            _locales = TestLocaleData();
+            Assert.That(_locales.Any(x => x.UserId == _userId), Is.True);
+        }
+
+        public void AndGivenThatTheLocaleExists()
+        {
+            _locales = TestLocaleData();
+            Assert.That(_locales.FirstOrDefault(x => x.Id == _localeId), Is.Not.Null);
+        }
+        #endregion
+
+        #region When
         public void WhenTheLocalesAreRetrieved()
         {
             SetUpMock();
@@ -49,10 +74,32 @@ namespace LocaleDiary.Tests.Unit.Services
             _userLocales = _localeService.GetLocalesForUser(_userId);
         }
 
+        public void WhenTheLocaleIsRetrieved()
+        {
+            SetUpMock();
+            _localeRepository = new LocaleRepository(_mockContext.Object);
+            _localeService = new LocaleService(_localeRepository);
+            _locale = _localeService.GetLocaleById(_localeId);
+        }
+        #endregion
+
+        #region Then
         public void ThenNoLocalesAreReturned()
         {
             Assert.That(_userLocales.Count(), Is.EqualTo(0));
         }
+
+        public void ThenTheExpectedNumberOfLocalesAreReturned()
+        {
+            Assert.That(_userLocales.Count(), Is.EqualTo(2));
+        }
+
+        public void ThenTheCorrectLocaleIsReturned()
+        {
+            Assert.That(_locale, Is.InstanceOf<Locale>());
+            Assert.That(_locale.Id, Is.EqualTo(_localeId));
+        }
+        #endregion
 
         [Test]
         public void AccountHasNoLocalesDefined()
@@ -64,11 +111,33 @@ namespace LocaleDiary.Tests.Unit.Services
                 .BDDfy<LocalesAreRetrieved>();
         }
 
+        [Test]
+        public void AccountHasLocalesDefined()
+        {
+            this.Given(x => x.GivenAUserId(1))
+                .And(x => x.AndGivenThatTheUserHasLocales())
+                .When(x => x.WhenTheLocalesAreRetrieved())
+                .Then(x => x.ThenTheExpectedNumberOfLocalesAreReturned())
+                .BDDfy<LocalesAreRetrieved>();
+        }
+
+        [Test]
+        public void LocalesRetrievedById()
+        {
+            this.Given(x => x.GivenALocaleId(1))
+                .And(x => x.AndGivenThatTheLocaleExists())
+                .When(x => x.WhenTheLocaleIsRetrieved())
+                .Then(x => x.ThenTheCorrectLocaleIsReturned())
+                .BDDfy<LocalesAreRetrieved>();
+        }
+
         private static IQueryable<Locale> TestLocaleData()
         {
             return new List<Locale>
             {
-                new Locale {Id = 1, Name = "First Locale", UserId = 1}
+                new Locale {Id = 1, Name = "First Locale", UserId = 1},
+                new Locale {Id = 2, Name = "Second Locale", UserId = 1},
+                new Locale {Id = 3, Name = "Third Locale", UserId = 2}
             }.AsQueryable();
         }
 

@@ -9,5 +9,11 @@ namespace LocaleDiary.Data.Query
             AddCriteria(x => x.UserId == userId);
             return this;
         }
+
+        public ListLocalesQuery WithLocale(int localeId)
+        {
+            AddCriteria(x => x.Id == localeId);
+            return this;
+        }
     }
 }

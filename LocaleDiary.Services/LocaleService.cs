@@ -19,5 +19,13 @@ namespace LocaleDiary.Services
             
             return Locales.GetLocales(query).ToList();
         }
+
+        public Locale GetLocaleById(int localeId)
+        {
+            var query = new ListLocalesQuery()
+                .WithLocale(localeId);
+
+            return Locales.GetLocales(query).FirstOrDefault();
+        }
     }
 }
