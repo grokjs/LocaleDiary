@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\GuidList.cs" />
     <Compile Include="Infrastructure\TestDbAsyncEnumerable.cs" />
     <Compile Include="Infrastructure\TestDbAsyncEnumerator.cs" />
     <Compile Include="Infrastructure\TestDbAsyncQueryProvider.cs" />

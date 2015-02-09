@@ -1,9 +1,14 @@
-﻿namespace LocaleDiary.Core.Entities
+﻿using System;
+
+namespace LocaleDiary.Core.Entities
 {
     public class Locale
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
+        public string Description { get; set; }
+        public Guid UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

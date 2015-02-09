@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace LocaleDiary.Services
         {
         }
 
-        public List<Locale> GetLocalesForUser(int userId)
+        public List<Locale> GetLocalesForUser(Guid userId)
         {
             var query = new ListLocalesQuery()
                 .WithUser(userId);
@@ -22,7 +23,7 @@ namespace LocaleDiary.Services
             return Locales.GetLocales(query).ToList();
         }
 
-        public async Task<List<Locale>> GetLocalesForUserAsync(int userId)
+        public async Task<List<Locale>> GetLocalesForUserAsync(Guid userId)
         {
             var query = new ListLocalesQuery()
                 .WithUser(userId);

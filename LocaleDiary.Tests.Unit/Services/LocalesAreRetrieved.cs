@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using LocaleDiary.Core.Entities;
@@ -6,6 +7,7 @@ using LocaleDiary.Data.Ef;
 using LocaleDiary.Data.Ef.Repositories;
 using LocaleDiary.Data.Repositories;
 using LocaleDiary.Services;
+using LocaleDiary.Tests.Unit.Infrastructure;
 using Moq;
 using NUnit.Framework;
 using TestStack.BDDfy;
@@ -20,7 +22,9 @@ namespace LocaleDiary.Tests.Unit.Services
     public class LocalesAreRetrieved
     {
         #region Private Properties
-        private int _userId, _localeId;
+        private int _localeId;
+        private Guid _userId;
+        private List<Guid> _guids = new GuidList();
         private IQueryable<Locale> _locales;
 
         private readonly Mock<DbSet<Locale>> _mockSet
@@ -35,7 +39,7 @@ namespace LocaleDiary.Tests.Unit.Services
         #endregion
 
         #region Given
-        public void GivenAUserId(int userId)
+        public void GivenAUserId(Guid userId)
         {
             _userId = userId;
         }
@@ -115,7 +119,7 @@ namespace LocaleDiary.Tests.Unit.Services
         [Test]
         public void AccountHasNoLocalesDefined()
         {
-            this.Given(x => x.GivenAUserId(100))
+            this.Given(x => x.GivenAUserId(_guids[9]))
                 .And(x => x.AndGivenThatTheUserHasNoLocales())
                 .When(x => x.WhenTheLocalesAreRetrieved())
                 .Then(x => x.ThenNoLocalesAreReturned())
@@ -125,7 +129,7 @@ namespace LocaleDiary.Tests.Unit.Services
         [Test]
         public void AccountHasLocalesDefined()
         {
-            this.Given(x => x.GivenAUserId(1))
+            this.Given(x => x.GivenAUserId(_guids[0]))
                 .And(x => x.AndGivenThatTheUserHasLocales())
                 .When(x => x.WhenTheLocalesAreRetrieved())
                 .Then(x => x.ThenTheExpectedNumberOfLocalesAreReturned())
@@ -154,13 +158,13 @@ namespace LocaleDiary.Tests.Unit.Services
         #endregion
 
         #region Private Methods
-        private static IQueryable<Locale> TestLocaleData()
+        private IQueryable<Locale> TestLocaleData()
         {
             return new List<Locale>
             {
-                new Locale {Id = 1, Name = "First Locale", UserId = 1},
-                new Locale {Id = 2, Name = "Second Locale", UserId = 1},
-                new Locale {Id = 3, Name = "Third Locale", UserId = 2}
+                new Locale {Id = 1, Name = "First Locale", UserId = _guids[0]},
+                new Locale {Id = 2, Name = "Second Locale", UserId = _guids[0]},
+                new Locale {Id = 3, Name = "Third Locale", UserId = _guids[1]}
             }.AsQueryable();
         }
 
