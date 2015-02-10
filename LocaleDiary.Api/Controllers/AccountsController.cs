@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using LocaleDiary.Api.Infrastructure;
@@ -22,9 +19,9 @@ namespace LocaleDiary.Api.Controllers
         }
 
         [Route("user/{id:guid}", Name = "GetUserById")]
-        public async Task<IHttpActionResult> GetUser(string Id)
+        public async Task<IHttpActionResult> GetUser(string id)
         {
-            var user = await AppUserManager.FindByIdAsync(Id);
+            var user = await AppUserManager.FindByIdAsync(id);
 
             if (user != null)
             {

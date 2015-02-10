@@ -14,9 +14,6 @@ namespace LocaleDiary.Data.Ef.Mapping
             Property(x => x.Name).IsRequired().HasMaxLength(250);
             Property(x => x.Description).HasMaxLength(1000);
             Property(x => x.UserId).IsRequired();
-            HasRequired(x => x.User)
-                .WithMany(x => x.Locales)
-                .HasForeignKey(x => x.UserId);
         }
     }
 }

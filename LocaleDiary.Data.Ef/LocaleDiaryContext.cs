@@ -9,7 +9,8 @@ namespace LocaleDiary.Data.Ef
         public LocaleDiaryContext()
             : base("LocaleDiaryDb")
         {
-            
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Locale> Locales { get; set; }

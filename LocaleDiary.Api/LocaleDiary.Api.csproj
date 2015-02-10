@@ -72,6 +72,15 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -126,9 +135,11 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\LocalesController.cs" />
     <Compile Include="Infrastructure\ApplicationDbContext.cs" />
     <Compile Include="Infrastructure\ApplicationUser.cs" />
     <Compile Include="Infrastructure\ApplicationUserManager.cs" />
+    <Compile Include="Infrastructure\UnityResolver.cs" />
     <Compile Include="Migrations\201502090409360_InitialCreate.cs" />
     <Compile Include="Migrations\201502090409360_InitialCreate.Designer.cs">
       <DependentUpon>201502090409360_InitialCreate.cs</DependentUpon>
@@ -144,7 +155,24 @@
       <DependentUpon>201502090409360_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LocaleDiary.Core\LocaleDiary.Core.csproj">
+      <Project>{4cd3b4e1-83c3-425c-b0b5-480efef86b42}</Project>
+      <Name>LocaleDiary.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocaleDiary.Data.Ef\LocaleDiary.Data.Ef.csproj">
+      <Project>{59573925-E9C0-423A-909F-3922F9994E6D}</Project>
+      <Name>LocaleDiary.Data.Ef</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocaleDiary.Data\LocaleDiary.Data.csproj">
+      <Project>{8A9EC535-7F5A-4FDE-BC1C-A5ADC4EE5664}</Project>
+      <Name>LocaleDiary.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocaleDiary.Services\LocaleDiary.Services.csproj">
+      <Project>{291AAE7A-2BCC-439D-B75F-BDD3AF118344}</Project>
+      <Name>LocaleDiary.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

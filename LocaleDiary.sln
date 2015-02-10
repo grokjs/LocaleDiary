@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{8BFE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Api", "LocaleDiary.Api\LocaleDiary.Api.csproj", "{D32F8688-7BC8-409F-A427-70B9B49201AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocaleDiary.Web", "LocaleDiary.Web\LocaleDiary.Web.csproj", "{78147A15-62D1-48FE-9647-BC05E120814E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{D32F8688-7BC8-409F-A427-70B9B49201AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D32F8688-7BC8-409F-A427-70B9B49201AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D32F8688-7BC8-409F-A427-70B9B49201AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78147A15-62D1-48FE-9647-BC05E120814E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78147A15-62D1-48FE-9647-BC05E120814E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78147A15-62D1-48FE-9647-BC05E120814E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78147A15-62D1-48FE-9647-BC05E120814E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,5 +72,6 @@ Global
 		{59573925-E9C0-423A-909F-3922F9994E6D} = {4A35A8A5-6A76-4098-8179-E35B14EE3C64}
 		{291AAE7A-2BCC-439D-B75F-BDD3AF118344} = {EA643BA4-8D35-48D2-B3C6-2FADE1904A72}
 		{D32F8688-7BC8-409F-A427-70B9B49201AD} = {8BFE7BAB-7959-465A-91C6-9B184A80BE15}
+		{78147A15-62D1-48FE-9647-BC05E120814E} = {8BFE7BAB-7959-465A-91C6-9B184A80BE15}
 	EndGlobalSection
 EndGlobal
